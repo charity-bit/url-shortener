@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <title>Document</title>
+
+    <style>
+      .my_button {
+        margin-top: 0px;
+      }
+      .main {
+        background-color: #242424;
+      }
+      .main h1 {
+        color: whitesmoke;
+      }
+      .main thead {
+        color: whitesmoke;
+      }
+      table{  
+        margin-top: 20px;
+           table-layout: fixed;
+           border: 1px solid black;
+      }
+      th,td{
+          border: 1px solid black;
+          width: 100px;
+          overflow: hidden;
+      }
+      .main table tbody{
+                color: whitesmoke;
+      }
+      @media (max-width: 600px) {
+        .my_button {
+          margin-top: 20px;
+        }
+       
+      }
+    </style>
+  </head>
+  <body class="container main">
+    <div>
+      <h1>Short URL Generator</h1>
+      <form action="/shortUrls" method="post" class="my-4 form-inline">
+        <label for="longUrl" class="sr-only">longUrl</label>
+        <input
+          placeholder="enter long url"
+          required
+          type="url"
+          name="longUrl"
+          id="longUrl"
+          class="col form-control mr-2"
+        />
+        <button class="btn btn-success my_button" type="submit">shorten</button>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Long Url</th>
+            <th>UID</th>
+            <th>Clicks</th>
+            <th>Time Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shortUrls.forEach(shortUrl =>{ %>
+
+          <tr>
+            <td><a href="<%= shortUrl.longUrl%>"><%= shortUrl.longUrl%></a></td>
+            <td><a href="<%= shortUrl.uid%>"><%= shortUrl.uid%></a></td>
+            <td><%=shortUrl.clicks%></td>
+            <td><%=shortUrl.date%></td>
+          </tr>
+
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
